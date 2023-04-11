@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useTable } from 'react-table';
 import {Columns} from "./Columns";
 
-export interface UserSelectorProps {
+export interface UserCardProps {
     user: User | null
 }
 const TableContainer = styled.div``;
@@ -12,13 +12,23 @@ const Table = styled.th`
   border: solid 1px blue;
 `;
 const HeadCell = styled.th`
+  border-bottom: solid 3px red;
+  background-color: aliceblue;
+  color: black;
+  font-weight: bold;
   font-family: American Typewriter;
 `;
 const TableCell = styled.th`
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: solid 2px gray;
+  background-color: papayawhip;
   font-family: Arial Rounded MT Bold;
 `;
 
-export function UserCard({ user }:UserSelectorProps): JSX.Element {
+export function UserCard({ user }:UserCardProps): JSX.Element {
 
     const data = !!user ? [
         {...JSON.parse(JSON.stringify(user))},
@@ -48,12 +58,6 @@ export function UserCard({ user }:UserSelectorProps): JSX.Element {
                                 {headerGroup.headers.map(column => (
                                     <HeadCell
                                         {...column.getHeaderProps()}
-                                        style={{
-                                            borderBottom: 'solid 3px red',
-                                            background: 'aliceblue',
-                                            color: 'black',
-                                            fontWeight: 'bold',
-                                        }}
                                     >
                                         {column.render('Header')}
                                     </HeadCell>
@@ -70,11 +74,6 @@ export function UserCard({ user }:UserSelectorProps): JSX.Element {
                                         return (
                                             <TableCell
                                                 {...cell.getCellProps()}
-                                                style={{
-                                                    padding: '10px',
-                                                    border: 'solid 1px gray',
-                                                    background: 'papayawhip',
-                                                }}
                                             >
                                                 {cell.render('Cell')}
                                             </TableCell>
